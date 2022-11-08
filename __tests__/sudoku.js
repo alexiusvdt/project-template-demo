@@ -1,11 +1,13 @@
 import Board from "./../src/sudoku.js";
 
 describe('Board', () => {
+  beforeEach(() => {
+    const board = new Board(rows);
+    let rows = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    board.row1 = rows;
+  })
 
-  test('shall create a Board object with nine row properties', () => {
-  let rows = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const board = new Board(rows);
-  board.row1 = rows;
+  test('shall create a Board object with nine row properties', (board, rows) => {
   board.row2 = rows;
   board.row3 = rows;
   board.row4 = rows;
@@ -14,7 +16,6 @@ describe('Board', () => {
   board.row7 = rows;
   board.row8 = rows;
   board.row9 = rows;
-  
   expect(board.row1).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   expect(board.row2).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   expect(board.row3).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -26,5 +27,8 @@ describe('Board', () => {
   expect(board.row9).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 
+  test('shall verify all numbers between 1 and 9 present & unique in row', (board) => {
+    expect(board.row1).toEqual(true);
+  });
 
 });
